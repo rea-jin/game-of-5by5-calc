@@ -3,7 +3,10 @@ $(function () {
 
   var row = 5; // 行
   var col = 5; // 列
-  var mas = row * col;
+  var mas = row * col; // マス
+  var kigou = $("#kigou").val(); // 演算子
+  var array = []; // 全ての答えを順番に入れる配列
+
 
   // 選択した列と行を取得
   $("#row").on('change', function () {
@@ -17,9 +20,19 @@ $(function () {
     console.log(mas);
   });
 
+  // ===============================================
+  // 演算子変更ボタンを押したら記号を変える 
+  // =============================================== 
+  $("#enzan").on('click', function () {
+    var kigou_array = ["+", "-", "*", "/"];
 
-  console.log(mas);
-  var array = []; // 全ての答えを順番に入れる
+    // ランダムで記号を選ぶ
+    let index = Math.floor(Math.random() * kigou_array.length);
+    kigou = kigou_array[index];
+    console.log(kigou);
+    $("#kigou").val(kigou);
+  });
+
 
   // ===========================================
   // startボタンを押したら タイマースタート
@@ -30,6 +43,8 @@ $(function () {
     $(".col-j").remove();
     $(".mas-k").remove();
 
+    // 演算子ボタンを押せないようにする
+    $("#enzan").attr("disabled", true);
     // ランダム数字を作成
     // 10こ必要なので、１０回繰り返す
     // １列目の５行分を作成 数字５つ
@@ -87,27 +102,33 @@ $(function () {
     }
   });
 
+  // ===========================================
+  // フォーカスが外れたら、全角を半角に直す
+  // ===========================================
+  $(document).on('focusout', '.mas-k', function () {
+    // $("input[type='text']").on("input", function () {
+    // 入力された値を取得
+    var input = $(this).val(); // ....input
+    // 全角の場合、半角数字に直して表示
+    input = input.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
+      return String.fromCharCode(s.charCodeAt(0) - 65248);
+    });
+    $(this).val(input);
+
+    console.log("input:" + input);
+  });
+
   // =========================================
-  // saitenボタンを押したら タイマーストップ　採点する
+  // 採点ボタンを押したら タイマーストップ　採点する
   // =========================================
-  // 演算子選択ボタンを押したら、// kigouを取得
   $("#saiten").on("click", function () {
-    var kigou = $("#kigou").val();
-    var kigou_array = ["+", "-", "*", "/"];
-    // $("#enzan").on('click',function(){
-    // ランダムで記号を選ぶ
-
-    let index = Math.floor(Math.random() * kigou_array.length);
-    kigou = kigou_array[index];
-    console.log(kigou);
-    $("#kigou").val(kigou);
-    // })
-
+    // 演算子ボタンを有効にする
+    $("#enzan").attr("disabled", false);
     // 1行目から順番に計算していく
     // 1行目の計算は、id:col-1は固定,row-1,row-2....
     // 列分ループ col
 
-    // 配列を空にする
+    // 配列を空にする・・・前回の答えを消す
     array = [];
     for (let n = 1; n <= col; n++) {
       // row-i行の数字をidから数字を取得
@@ -131,49 +152,40 @@ $(function () {
         array.push(ans); // 配列に入れる
       }
     }
-  });
 
-  // startボタンを押したら ・・・・・・・ここまで
-  // ===========================================
+    // 入力値を配列に入れる
+    var input_array = [];
+    // それぞれのinput type:textについて、値を取得して配列に入れる
+    $("input[type=text]").each(function () {
+      var input_ans = $(this).val();
+      input_array.push(input_ans);
 
-
-  // フォーカスが外れたら =======================
-
-  $(document).on('focusout', '.mas-k', function () {
-    // $("input[type='text']").on("input", function () {
-    // 入力された値を取得
-    var input = $(this).val(); // ....input
-    // 全角の場合、半角数字に直して表示
-    input = input.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
-      return String.fromCharCode(s.charCodeAt(0) - 65248);
     });
-    $(this).val(input);
 
-    console.log("input:" + input);
+    // 配列の値を順番に比べていく
+    for (let p = 0; p < mas; p++) {
+      var ans = array[p];
+      var inp = input_array[p];
 
-    // inputが空欄でなければ、
-    if (input !== "") {
-      // idを取得して、k-1,k-2....
-      var mas_num = $(this).attr("id");
-      console.log(mas_num);
-      // 文字を切り取る 2文字目から全てを指定
-      var k_num = mas_num.substr(2);
-      console.log(k_num);
-      // その数字のマスから答えを取得
-      var key = k_num - 1;
-      result = array[key]; // .....answer
-      // console.log(array[0]);
-      console.log("result:" + result);
-
+      // idを取得
+      k = p + 1;
       // 答えを比較
-      if (input == result) {
+      if (inp == ans) {
         // 正解なら背景を緑
-        $(this).css("background-color", "green");
+        $("#k_" + k).css("background-color", "green");
       } else {
         // 不正解なら背景を赤
-        $(this).css("background-color", "red");
+        $("#k_" + k).css("background-color", "red");
       }
     }
-
   });
+
+
+
+
+
+  
 });
+
+
+

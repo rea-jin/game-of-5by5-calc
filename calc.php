@@ -15,25 +15,27 @@
 <body>
     <div class="button__area">
         <p>行数を選んでください
-        <select id="row" name="row">
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select></p>
+            <select id="row" name="row">
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </p>
         <p>列数を選んでください
-        <select id="col" name="col">
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select>
-</p>
-        <button id="start">start:演算子変更</button>
+            <select id="col" name="col">
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </p>
+        
+        <button id="enzan">演算子変更</button>
+        <button id="start">start</button>
         <button id="saiten">採点</button>
-        <!-- <button id="enzan">演算子変更</button> -->
         <!-- <button id="get">入力値取得</button> -->
         <p>引き算は、上の数字から横の数字を引いてください。</p>
         <p>割り算は、上の数字を下の数字で割ってください。<br>
@@ -53,7 +55,7 @@
             <!-- マス２５個 -->
             <!-- <input id="k_1" class="mas-k" type="text"> -->
         </div>
-        
+
     </div>
 
     <div class="output-2">
@@ -61,7 +63,7 @@
     </div>
 
 
-    
+
 </body>
 
 </html>
