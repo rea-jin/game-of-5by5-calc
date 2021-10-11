@@ -24,10 +24,6 @@ body {
 .mas-k{
     float: left;
 }
-/* rowはプラス２いれる？　マスと同じ数いれる */
-.row-i:nth-child(7n), .mas-k:nth-child(5n) {
-    float: none;
-}
 
 input[type=text], input[type=button] {
     box-sizing: border-box;

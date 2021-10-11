@@ -1,19 +1,35 @@
 $(function () {
   // ランダム数字をセット
 
-  const row = 5; // 行
-  const col = 5; // 列
-  const mas = row * col;
+  var row = 5; // 行
+  var col = 5; // 列
+  var mas = row * col;
+
+  // 選択した列と行を取得
+  $("#row").on('change', function () {
+    row = $(this).val();
+    mas = row * col;
+    console.log(mas);
+  });
+  $("#col").on('change', function () {
+    col = $(this).val();
+    mas = row * col;
+    console.log(mas);
+  });
+
+
+  console.log(mas);
   var array = []; // 全ての答えを順番に入れる
 
   // ===========================================
-  // startボタンを押したら 
+  // startボタンを押したら タイマースタート
   // ===========================================
   $("#start").on("click", function () {
     // 列、行を削除する
     $(".row-i").remove();
     $(".col-j").remove();
     $(".mas-k").remove();
+
     // ランダム数字を作成
     // 10こ必要なので、１０回繰り返す
     // １列目の５行分を作成 数字５つ
@@ -30,6 +46,12 @@ $(function () {
           value: num1,
         })
       );
+      // もし、行数番目になったら、フロート解除
+      if (i == row) {
+        $("#i_" + i).css("float", "none");
+        console.log(i + "番目")
+      }
+
     }
     // １行目の５列分の数字を作成
     for (let j = 1; j <= col; j++) {
@@ -57,11 +79,19 @@ $(function () {
           // value: "0",
         })
       );
+      // もし、行数で割り切れるとき、フロート解除
+      if ((k % row) == 0) {
+        $("#k_" + k).css("float", "none");
+        console.log(k + "番目")
+      }
     }
-    // });
+  });
 
-    // saitenボタンを押したら // 演算子選択ボタンを押したら、// kigouを取得
-    // $("#saiten").on("click", function () {
+  // =========================================
+  // saitenボタンを押したら タイマーストップ　採点する
+  // =========================================
+  // 演算子選択ボタンを押したら、// kigouを取得
+  $("#saiten").on("click", function () {
     var kigou = $("#kigou").val();
     var kigou_array = ["+", "-", "*", "/"];
     // $("#enzan").on('click',function(){
@@ -93,8 +123,8 @@ $(function () {
         var ans = row_num + kigou + col_num;
         ans = eval(ans);
         // 割り算の場合、四捨五入する
-        if(kigou =="/"){
-          ans = Math.round(ans*10)/10;
+        if (kigou == "/") {
+          ans = Math.round(ans * 10) / 10;
         }
         console.log(ans);
         // p = n*m - 1; // キー
@@ -114,10 +144,10 @@ $(function () {
     // 入力された値を取得
     var input = $(this).val(); // ....input
     // 全角の場合、半角数字に直して表示
-    input = input.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+    input = input.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
       return String.fromCharCode(s.charCodeAt(0) - 65248);
-        });
-        $(this).val(input);
+    });
+    $(this).val(input);
 
     console.log("input:" + input);
 
