@@ -15,7 +15,7 @@
 <body>
     <div class="button__area">
         <button id="start">start:演算子変更</button>
-        <!-- <button id="saiten">採点</button> -->
+        <button id="saiten">採点</button>
         <!-- <button id="enzan">演算子変更</button> -->
         <!-- <button id="get">入力値取得</button> -->
         <p>引き算は、上の数字から横の数字を引いてください。</p>
