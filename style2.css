@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row {
+    float: left;
+}
+
+.col {
+    float: none;
+}
+
+
+
+input[type=text], input[type=button] {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+input[type=button]{
+    background-color: antiquewhite;
+}
+
+input:nth-child(6n) {
+    float: none;
+}
+
+section {
+    margin: 30px auto;
+    width: 500px;
+    height: 500px;
+}
+
+.input__num {}
+
+
+.button__area>button{
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    text-align: center;
+}

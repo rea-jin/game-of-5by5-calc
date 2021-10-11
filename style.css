@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.output{
+    /* background-color: antiquewhite; */
+    position: relative;
+    left: 10%;
+}
+.input__area{
+    /* background-color: aquamarine; */
+    position: absolute;
+    top: 60px;
+    left: 60px;
+}
+.kigou, .row-i{
+    float:left;
+}
+.col-j{
+    float:none;
+}
+
+.mas-k{
+    float: left;
+}
+/* rowはプラス２いれる？　マスと同じ数いれる */
+.row-i:nth-child(7n), .mas-k:nth-child(5n) {
+    float: none;
+}
+
+input[type=text], input[type=button] {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+input[type=button]{
+    background-color: antiquewhite;
+}
+
+section {
+    margin: 30px auto;
+    width: 500px;
+    height: 500px;
+}
+.button__area>button{
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    text-align: center;
+}
+.button__area p {
+    margin-left: 20px;
+}
+
+.output-2 {
+    margin: 30px;
+    text-align: center;
+    height: 100px;
+}
