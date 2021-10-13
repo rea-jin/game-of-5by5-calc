@@ -45,6 +45,9 @@ $(function () {
 
     // 演算子ボタンを押せないようにする
     $("#enzan").attr("disabled", true);
+    // このボタンも押せないようにする 
+    $("#start").attr("disabled", true);
+
     // ランダム数字を作成
     // 10こ必要なので、１０回繰り返す
     // １列目の５行分を作成 数字５つ
@@ -100,6 +103,9 @@ $(function () {
         console.log(k + "番目")
       }
     }
+
+    // タイマースタートの関数を呼び出す
+    countStart();
   });
 
   // ===========================================
@@ -124,9 +130,13 @@ $(function () {
   $("#saiten").on("click", function () {
     // 演算子ボタンを有効にする
     $("#enzan").attr("disabled", false);
+    // startボタンも有効にする
+    $("#start").attr("disabled", false);
+    // タイマーを止める
+    clearInterval(stp);
+
     // 1行目から順番に計算していく
     // 1行目の計算は、id:col-1は固定,row-1,row-2....
-    // 列分ループ col
 
     // 配列を空にする・・・前回の答えを消す
     array = [];
@@ -179,12 +189,13 @@ $(function () {
       }
     }
   });
+ 
 
 
 
 
 
-  
+
 });
 
 

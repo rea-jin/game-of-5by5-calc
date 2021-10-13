@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="style2.css"> -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="timer.js"></script>
     <script src="app.js"></script>
 </head>
 
@@ -32,11 +33,11 @@
                 <option value="9">9</option>
             </select>
         </p>
-        
+
         <button id="enzan">演算子変更</button>
         <button id="start">start</button>
         <button id="saiten">採点</button>
-        <!-- <button id="get">入力値取得</button> -->
+        <div id="timer">00：00</div>
         <p>引き算は、上の数字から横の数字を引いてください。</p>
         <p>割り算は、上の数字を下の数字で割ってください。<br>
             割り算の時、答えは少数第２位を四捨五入して、<br>
