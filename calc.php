@@ -1,3 +1,11 @@
+<?php
+    session_start();
+var_dump($_SESSION);
+
+
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -60,7 +68,8 @@
     </div>
 
     <div class="output-2">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <!-- tokuten 表示 -->
+        <textarea name="" id="tokuten" cols="30" rows="10"></textarea>
     </div>
 
 

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    $_SESSION['name'] = array($user);
+    $user_name = $_SESSION['name'];
+    var_dump($_SESSION);
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

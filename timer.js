@@ -27,7 +27,7 @@ function countUp() {
 
 
   // １０分で終了させる
-  if (count === 599) {
+  if (count === 600) {
     $("#timer").text() = "Time UP!";
     clearInterval(stp);
   } else {

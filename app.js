@@ -48,6 +48,11 @@ $(function () {
     // このボタンも押せないようにする 
     $("#start").attr("disabled", true);
 
+    // 時間表示を０にする
+    $("#timer").text("00:00");
+    // countを０にする
+    count = 0;
+
     // ランダム数字を作成
     // 10こ必要なので、１０回繰り返す
     // １列目の５行分を作成 数字５つ
@@ -134,6 +139,8 @@ $(function () {
     $("#start").attr("disabled", false);
     // タイマーを止める
     clearInterval(stp);
+ 
+    console.log(count);
 
     // 1行目から順番に計算していく
     // 1行目の計算は、id:col-1は固定,row-1,row-2....
@@ -173,6 +180,7 @@ $(function () {
     });
 
     // 配列の値を順番に比べていく
+    var cor = 0;
     for (let p = 0; p < mas; p++) {
       var ans = array[p];
       var inp = input_array[p];
@@ -183,13 +191,48 @@ $(function () {
       if (inp == ans) {
         // 正解なら背景を緑
         $("#k_" + k).css("background-color", "green");
+        cor++;
+
       } else {
         // 不正解なら背景を赤
         $("#k_" + k).css("background-color", "red");
       }
     }
+
+
+    // 得点を計算する
+    // 正解したマスの数(25~81)＊記号による倍率(0.1-0.4)＊秒数（600/count）の四捨五入
+    // 正解数 cor
+    // 記号による倍率を取得
+    switch (kigou) {
+      case "+":
+        mag = 0.1;
+        break;
+
+      case "-":
+        mag = 0.2;
+        break;
+
+      case "*":
+        mag = 0.3;
+        break;
+
+      case "/":
+        mag = 0.4;
+        break;
+    }
+    // tokuten
+    var tokuten =Math.round(cor * mag * 600/count);
+    // ユーザー名取得したい
+    var user = $("#name").val();
+    // セッションにユーザーか得点を記録したい。
+    var tokuten_msg = user + "さんの得点は、"　+ tokuten + "点です。";
+    console.log(tokuten_msg);
+
+    $("#tokuten").text("あなたの点数は、" + tokuten + "点です。");
+
   });
- 
+
 
 
 
