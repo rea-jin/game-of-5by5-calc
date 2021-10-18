@@ -1,8 +1,7 @@
 <?php
     session_start();
-    $_SESSION['name'] = array($user);
-    $user_name = $_SESSION['name'];
-    var_dump($_SESSION);
+
+    // var_dump($_SESSION);
 
     ?>
 
@@ -48,7 +47,7 @@ $(function(){
         e.preventDefault();
         $.ajax({
             type:"post",
-            url:"ajax.php",
+            url:"login.php",
             dataType:"json",
             data:{
                 name: $("#name").val(),

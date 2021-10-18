@@ -1,8 +1,16 @@
 <?php
-    session_start();
+
+error_reporting(E_ALL);
+ini_set('display_errors','On');
+session_start();
 var_dump($_SESSION);
 
-
+// 得点をsessionに入れたい。
+if(empty($_SESSION['tokuten'])){
+    
+    
+    
+}
     ?>
 
 
